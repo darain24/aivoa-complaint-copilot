@@ -1,11 +1,12 @@
 # Verification report
 
-Verified locally on 11 September 2026 using PostgreSQL 17.11, Python 3.14, and Node.js 22.
+Verified locally on 11 September 2026 using PostgreSQL 17.11, Python 3.14, and Node.js 25.8.1 (CI targets Node.js 22).
 
 | Check | Result |
 |---|---|
 | Backend workflow/API suite | 8 passed against a dedicated PostgreSQL database |
 | TypeScript + Vite production build | Passed |
+| Playwright end-to-end browser smoke test | 1 passed |
 | Python undefined/unused imports and import ordering | Ruff F/I checks passed |
 | PDF sample | Rendered and visually inspected; one readable page |
 | Desktop UI | Empty and populated screens inspected at 1512×982 |
