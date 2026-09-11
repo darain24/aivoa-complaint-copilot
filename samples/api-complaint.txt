@@ -1,0 +1,11 @@
+Source: Email
+Customer: ABC Formulations Ltd.
+Product: Metformin Hydrochloride API
+Strength: IP/BP
+Batch: MHF260712A
+Quantity: 25 kg (1 HDPE drum)
+Manufacturing date: 25 June 2026
+Site: API Manufacturing - Block A
+Materials: HDPE drum
+Category: Foreign matter contamination
+Description: ABC Formulations Ltd. reported multiple dark foreign particles inside a sealed HDPE drum during incoming quality inspection. The drum had no visible external damage. Material has been quarantined pending laboratory investigation. No patient exposure has been reported.

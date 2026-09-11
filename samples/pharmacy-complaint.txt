@@ -1,0 +1,12 @@
+Source: Pharmacy
+Customer: Apollo Pharmacy
+Product: Amoxicillin Capsules
+Strength: 500 mg
+Batch: AMX240602
+Quantity: 12 capsules
+Manufacturing date: March 2026
+Expiry date: February 2028
+Site: FDF Manufacturing - Block B
+Materials: Primary packaging (bottle)
+Category: Discoloration
+Description: Apollo Pharmacy reported 12 discolored capsules in a sealed bottle. Please investigate the quality defect and arrange a response.
