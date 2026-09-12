@@ -6,6 +6,16 @@ A pharmaceutical customer complaint workspace: turn text, email, or a PDF into a
 
 ![Complaint intake workspace](docs/intake-screenshot.png)
 
+## Recorded assignment videos
+
+Both recordings use the live Groq and Neon setup, with disclosed AI-generated English narration and fictional complaint data.
+
+- [Product demo — 7:01](https://github.com/darain24/aivoa-complaint-copilot/releases/download/v1.1.0-demo/01-aivoa-product-demo.mp4)
+- [Code walkthrough — 8:12](https://github.com/darain24/aivoa-complaint-copilot/releases/download/v1.1.0-demo/02-aivoa-code-walkthrough.mp4)
+- [Transcripts, metadata and checksums](https://github.com/darain24/aivoa-complaint-copilot/releases/tag/v1.1.0-demo)
+
+Both MP4s were visually reviewed and fully decoded without errors; they contain 1080p H.264 video and AAC narration.
+
 ## Start locally
 
 Prerequisites: Node.js 22+, Python 3.12+, [uv](https://docs.astral.sh/uv/getting-started/installation/), and Docker with Compose (or an existing PostgreSQL 17 database).
