@@ -13,6 +13,7 @@ Prerequisites: Node.js 22+, Python 3.12+, [uv](https://docs.astral.sh/uv/getting
 ```sh
 # Repository root
 cp backend/.env.example backend/.env
+# Set DATABASE_URL to your Neon URL, or use the local Compose database below.
 docker compose up -d db
 
 # Terminal 1
@@ -28,7 +29,9 @@ npm run dev
 
 Open [the app](http://localhost:5173) and [interactive API docs](http://localhost:8000/docs). Tables are initialized at API startup. Database data survives API restarts and `docker compose down`; deleting the Docker volume removes it.
 
-Using an existing database? Set `DATABASE_URL` in `backend/.env` to a PostgreSQL SQLAlchemy URL (`postgresql+psycopg://USER:PASSWORD@HOST:PORT/DB`). Use UTF-8 database encoding. Run backend commands from `backend/` so the `.env` is found.
+The local Compose database is exposed on port **5433**; set `DATABASE_URL=postgresql+psycopg://aivoa:aivoa@localhost:5433/aivoa` when using it.
+
+Using an existing database? Set `DATABASE_URL` in `backend/.env` to a standard Neon URL (`postgresql://USER:PASSWORD@HOST/DB?sslmode=require`) or a PostgreSQL SQLAlchemy URL (`postgresql+psycopg://USER:PASSWORD@HOST:PORT/DB`). The backend normalizes standard Postgres URLs to psycopg 3. Use UTF-8 database encoding. Run backend commands from `backend/` so the `.env` is found.
 
 ## Add your Groq key
 
@@ -37,14 +40,14 @@ The app starts in **demo mode** without credentials. In `backend/.env`, set:
 ```dotenv
 AI_MODE=live
 GROQ_API_KEY=your_groq_api_key_here
-GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_MODEL=openai/gpt-oss-120b
 ```
 
 Replace the placeholder with your real key, then restart the backend. Keep the key on the server; never put it in a `VITE_` variable. `.env` is ignored by Git.
 
-The assignment requests `gemma2-9b-it`, but Groq [deprecated that model](https://console.groq.com/docs/deprecations). This implementation uses the assignment's permitted alternative, `llama-3.3-70b-versatile`, configurable via `GROQ_MODEL`.
+The assignment requests `gemma2-9b-it` or `llama-3.3-70b-versatile`. Groq [retired Gemma in October 2025 and Llama for free/developer usage in August 2026](https://console.groq.com/docs/deprecations). After verifying the available models and obtaining user approval, this implementation uses Groq's recommended replacement, `openai/gpt-oss-120b`. This is an explicitly documented model substitution; `GROQ_MODEL` remains configurable.
 
-**Truthful mode boundaries:** Live mode uses Groq for schema-validated extraction and conversational field corrections. Demo mode uses deterministic label/regex extraction, with the same real LangGraph orchestration. Risk classification, completeness, summary, duplicate checks, investigation hypotheses, CAPA suggestions, and question responses are transparent local rules/templates in both modes. These are support tools, not additional LLM agents. Live API failures are surfaced; they never silently fall back to demo results. Live Groq execution has not been verified without a user-supplied key.
+**Truthful mode boundaries:** Live mode uses Groq for schema-validated extraction and conversational field corrections. Demo mode uses deterministic label/regex extraction, with the same real LangGraph orchestration. Risk classification, completeness, summary, duplicate checks, investigation hypotheses, CAPA suggestions, and question responses are transparent local rules/templates in both modes. These are support tools, not additional LLM agents. Live API failures are surfaced; they never silently fall back to demo results. Live Groq intake and conversational correction were verified on 12 September 2026 using a user-supplied key, with PostgreSQL hosted on Neon.
 
 ## Demonstration flow
 
@@ -113,8 +116,8 @@ For the complete PostgreSQL suite, create a separate test database whose name en
 # From repository root with the Compose database running:
 docker compose exec db createdb -U aivoa aivoa_test
 cd backend
-DATABASE_URL=postgresql+psycopg://aivoa:aivoa@localhost:5432/aivoa_test \
-TEST_DATABASE_URL=postgresql+psycopg://aivoa:aivoa@localhost:5432/aivoa_test \
+DATABASE_URL=postgresql+psycopg://aivoa:aivoa@localhost:5433/aivoa_test \
+TEST_DATABASE_URL=postgresql+psycopg://aivoa:aivoa@localhost:5433/aivoa_test \
 AI_MODE=demo uv run pytest -q
 
 cd ../frontend

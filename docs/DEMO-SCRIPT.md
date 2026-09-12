@@ -159,7 +159,7 @@ The batch number is CHG260712A and affected quantity is 50 kg (2 HDPE drums)
 
 “In live mode, extraction uses the Groq SDK with a low-variance configuration and JSON object output. The prompt specifies the complaint schema, asks for empty strings when facts are missing, and tells the model to treat the evidence as data rather than instructions. The returned JSON is validated again with Pydantic. These measures reduce failure modes, but do not remove the need for human review.
 
-“The model is configurable. The brief requested Gemma 2 but allowed Llama 3.3; Groq retired the Gemma model, so the default is the permitted Llama alternative. The key belongs in the backend environment file. In demo mode, the extract node uses labeled text and a limited regex parser. Both modes still execute the same graph.”
+“The model is configurable. Groq retired both requested models for this developer account. The user approved Groq’s recommended GPT-OSS-120B replacement, which is explicitly documented in the repository. The key belongs in the backend environment file. In demo mode, the extract node uses labeled text and a limited regex parser. Both modes still execute the same graph.”
 
 ### Scene 5 · 3:45–4:45 · Assessment, corrections and response mapping
 

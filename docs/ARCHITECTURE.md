@@ -36,7 +36,7 @@ The screenshot also shows source/customer information, reset, and save controls.
 | Python FastAPI | Typed intake, upload, assessment, commit, list and status endpoints |
 | LangGraph | Compiled extract → assess → respond graph invoked for each intake |
 | Groq LLM | Server-side Groq SDK with JSON object output and Pydantic validation |
-| Gemma / allowed Llama alternative | `llama-3.3-70b-versatile` after Gemma retirement; configurable |
+| Requested models | Both unavailable for the current Groq account; user-approved `openai/gpt-oss-120b` replacement, configurable |
 | PostgreSQL or MySQL | PostgreSQL with SQLAlchemy and psycopg; no SQLite fallback |
 | Google Inter | Loaded in frontend/index.html with a local sans-serif fallback |
 | PDF/email/prompt → form | Text PDF, EML, pasted report and deterministic sample |
@@ -65,7 +65,7 @@ The deterministic demo parser understands labeled reports and a limited set of n
 
 ## Model decision and source references
 
-Groq's official [deprecation documentation](https://console.groq.com/docs/deprecations) records the retirement of Gemma 2. The brief explicitly allows Llama 3.3 70B as an alternative. The model name is configurable and should be verified against the user's Groq account when enabling live mode. No API token has been created or published.
+Groq's official [deprecation documentation](https://console.groq.com/docs/deprecations) records Gemma 2 retirement on 8 October 2025 and Llama 3.3 retirement for free/developer usage on 16 August 2026. On 12 September, the supplied key authenticated successfully but the Llama request returned 404. The account's model list included `openai/gpt-oss-120b`; the user approved that replacement, and live intake/correction passed. Credentials remain only in the ignored local `.env`.
 
 Graph construction follows [LangGraph's Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api): shared typed state, named nodes, edges, compile, then invoke. Each response includes the completed node trace. The UI shows actual request activity; it does not invent percent-complete progress.
 
